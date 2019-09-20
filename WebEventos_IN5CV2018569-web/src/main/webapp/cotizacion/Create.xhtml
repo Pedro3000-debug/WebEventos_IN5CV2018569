@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CotizacionCreateDlg" widgetVar="CotizacionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCotizacionTitle}">
+            <h:form id="CotizacionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cotizacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCotizacionLabel_idcotizacion}" for="idcotizacion" />
+                        <p:inputText id="idcotizacion" value="#{cotizacionController.selected.idcotizacion}" title="#{bundle.CreateCotizacionTitle_idcotizacion}" required="true" requiredMessage="#{bundle.CreateCotizacionRequiredMessage_idcotizacion}"/>
+                        <p:outputLabel value="#{bundle.CreateCotizacionLabel_nombrefacturacion}" for="nombrefacturacion" />
+                        <p:inputText id="nombrefacturacion" value="#{cotizacionController.selected.nombrefacturacion}" title="#{bundle.CreateCotizacionTitle_nombrefacturacion}" />
+                        <p:outputLabel value="#{bundle.CreateCotizacionLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{cotizacionController.selected.direccion}" title="#{bundle.CreateCotizacionTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreateCotizacionLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{cotizacionController.selected.telefono}" title="#{bundle.CreateCotizacionTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.CreateCotizacionLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{cotizacionController.selected.fecha}" title="#{bundle.EditCotizacionTitle_fecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCotizacionLabel_formadepago}" for="formadepago" />
+                        <p:inputText id="formadepago" value="#{cotizacionController.selected.formadepago}" title="#{bundle.CreateCotizacionTitle_formadepago}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cotizacionController.create}" value="#{bundle.Save}" update="display,:CotizacionListForm:datalist,:growl" oncomplete="handleSubmit(args,'CotizacionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CotizacionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
